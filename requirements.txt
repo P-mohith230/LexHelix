@@ -1,0 +1,10 @@
+streamlit>=1.30.0
+plotly>=5.18.0
+pandas>=2.0.0
+Pillow>=10.0.0
+nltk>=3.8.0
+python-dateutil>=2.8.0
+opencv-python-headless>=4.8.0
+pytesseract>=0.3.10
+transformers>=4.35.0
+torch>=2.0.0
