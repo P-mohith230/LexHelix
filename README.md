@@ -1,97 +1,101 @@
-# Cyberbullying App WhatsApp (AegisChat-3D)
+# 🧬 LexHelix: Dual-Engine Legal Analytics & Digital Safety Ecosystem
 
-A next-generation, premium, real-time **WhatsApp Web Glass-Clone** featuring integrated **AI Cyberbullying Detection, 10-Second Auto-Delete Timers, Dynamic Message Blurring, and 3D WebGL Analytics**.
+Welcome to **LexHelix**, a premium, high-fidelity dark-mode platform designed to revolutionize legal document analysis and digital communication safety. LexHelix houses two powerful real-time web applications under a unified neon-cyber aesthetic:
 
----
+1. **⚖️ Smart Judicial Case Timeline Analyzer (`app.py`)**  
+   *Interactive NLP litigation visualizer, multi-format OCR engine, and judicial intelligence room.*  
+   👉 **Live Deployment:** [lexhelix.streamlit.app](https://lexhelix.streamlit.app/)
 
-## 🌌 Core Capabilities & Highlights
-
-*   **📱 WhatsApp-Web Glass HUD**: A gorgeous dark-mode WhatsApp Web Clone with glassmorphism overlays, fluid scrolling, active typing indicators, and a custom message bar.
-*   **🚨 10-Second Auto-Delete Countdown**: Cyberbullying messages are instantly **blurred** in the chat feed, triggering a glowing red warning banner: `"This is a cyberbullying message!"` and starting a visual 10-second ticking countdown. After exactly 10 seconds, the message is permanently deleted and censored from the database.
-*   **👤 Behavioral Profile Cards**: Tracks persistent sent and received toxicity metrics inside each user profile. Even after messages are deleted, these stats remain, allowing you to view an audit metric of how other users behave.
-*   **📊 GPU-Accelerated 3D Analytics**:
-    *   **3D Sentiment Constellation Sphere**: A rotating, interactive 3D particle sphere. Nodes glow calm cyan for safe messages and pulse bright crimson for toxic flags.
-    *   **3D Volumetric Moderation Columns**: Volumetric glass columns that dynamically scale to represent active category counts (Threat, Insult, Harassment, Hate Speech, Safe).
-    *   **3D Message Timeline Helix**: A double helix spline track plotting safe messages (green octahedrons) and censored flags (red dodecahedrons).
-*   **🛡️ Relational Moderation Ledger**: Keeps a persistent SQLite audit log of blocked messages, rule violations, toxicity probability scores, and moderation actions.
+2. **💬 AegisChat-3D: Cyberbullying App WhatsApp (`whatsapp_app.py`)**  
+   *Real-time WhatsApp Web clone simulator featuring automated 10s countdown censors, dynamic CSS blurring, and live behavioral audit profiles.*  
+   👉 **Live Deployment:** [lexhelix-whatsapp.streamlit.app](https://lexhelix-whatsapp.streamlit.app/)
 
 ---
 
-## 🧠 System Architecture
+## ⚡ The Architectural Relationship: The Digital Forensics Pipeline
+
+While these two engines serve different front-line scenarios, they are deeply integrated beneath the surface:
 
 ```mermaid
-sequenceDiagram
-    autonumber
-    actor User as You / simulated contact
-    participant UI as WhatsApp HUD
-    participant Mod as Aegis Moderation Engine
-    participant DB as SQLite Relational Database
-    participant visual as 3D WebGL Visualizer
-
-    User->>UI: Types and sends message
-    UI->>Mod: Scan message payload
-    alt Message is SAFE
-        Mod-->>UI: Classification: "Safe" (Score < 0.50)
-        UI->>DB: Save normal message text
-        UI-->>User: Message posts normally (Clean bubble)
-    else Message is TOXIC / CYBERBULLYING
-        Mod-->>UI: Classification: "Threat/Insult" (Score >= 0.50)
-        UI->>DB: Save message tagged as is_toxic=1
-        UI->>DB: Save audit log in moderation_alerts
-        UI->>DB: Increment sender's sent_bully_count & receiver's received_bully_count
-        UI-->>User: Instantly apply CSS blur filter and show 10s countdown timer
-        Note over UI: Glowing Warning Banner: "This is a cyberbullying message!"
-        Loop 10 Seconds
-            UI-->>User: Ticks down: 10.. 9.. 8.. 7..
-        end
-        UI->>DB: Permanent Censor: flag_message_deleted()
-        UI-->>User: Bubble is permanently cleared & censored!
+flowchart TD
+    subgraph WhatsApp_Safety_Shield["💬 AegisChat-3D (whatsapp_app.py)"]
+        A[WhatsApp Web Interface] -->|Real-Time Chat| B[Aegis AI Moderation Engine]
+        B -->|Detect Toxicity| C[Dynamic CSS Blur + 10s Countdown]
+        C -->|Permanent Censor| D[Censored from Active Chat UI]
+        C -->|Audit Logging| E[Behavioral Toxicity Ledger SQLite]
+        E -->|Track Metrics| F[Cumulative Profile Stats]
     end
-    DB-->>visual: Stream active logs to 3D frame channels
-    visual-->>UI: Rotate and pulse WebGL spheres & columns at 60 FPS
+
+    subgraph Shared_WebGL_Visualizer["📊 GPU-Accelerated 3D Engine (three_visualizations.py)"]
+        G[3D Sentiment Constellation]
+        H[3D Volumetric Columns]
+        I[3D Chronological Timeline Helix]
+    end
+
+    subgraph Judicial_Intelligence_Suite["⚖️ Smart Judicial Case Analyzer (app.py)"]
+        J[Courtroom Judgments & Briefs] -->|OCR / PDF Extractor| K[NLP Case Flow Generator]
+        K -->|Temporal Extraction| L[Chronological Case Timeline]
+        E -.->|Forensic Evidence Feed| J
+    end
+
+    E --> Shared_WebGL_Visualizer
+    K --> Shared_WebGL_Visualizer
 ```
+
+1. **Evidence & Digital Forensics Bridge**: 
+   The **AegisChat-3D** system logs every flagged cyber-violation, toxic threat, and severity level into a persistent SQLite database (`cyberbullying.db`). This ledger serves as critical **digital forensics evidence**. This structured evidence feed can be directly imported and processed by the **Smart Judicial Case Timeline Analyzer** to reconstruct temporal sequence charts for harassment litigation, hate speech lawsuits, or custody cases.
+2. **Unified 3D Rendering Architecture (`three_visualizations.py`)**: 
+   Both applications share a state-of-the-art WebGL/Three.js render pipe. Whether plotting complex legal case stages or tracing live communication toxicity paths, both systems feed data into identical GPU-accelerated graphic modules to display stunning 3D Constellations, Volumetric Column charts, and Chronological Helix tracks.
 
 ---
 
-## 💻 Technical Details & AI Heuristics
+## ⚖️ Engine 1: Smart Judicial Case Timeline Analyzer (`app.py`)
 
-The AI Moderation Shield runs a high-performance **Weighted Lexicon Matrix** coupled with **Regex Boundary Qualifiers** to classify text locally with sub-millisecond latency:
+A comprehensive litigation-support app designed to help legal teams, judges, and researchers rapidly parse mountains of judicial pages.
 
-*   **Threat Lexicon**: Scans for physical violence markers (`kill you`, `hurt you`, `beat you`, `stab you`, etc.).
-*   **Insult Lexicon**: Scans for direct offensive terms (`stupid`, `idiot`, `loser`, `worthless`, `jerk`, etc.).
-*   **Harassment Lexicon**: Scans for repeated hostile indicators (`stalk`, `harass`, `block me`, `weirdo`, etc.).
-*   **Hate Speech Lexicon**: Scans for hostile, discriminative, or hateful phrases (`hate you`, `filthy`, `disgusting`, etc.).
+### 🌟 Core Capabilities
+* **📁 Multi-Format Document OCR Room**: Drag-and-drop courtroom briefs, PDFs, or scanned images. The engine extracts high-accuracy plain text with options for Tesseract-assisted OCR processing.
+* **🧠 NLP Judgment Summarizer**: Summarizes judgments and extracts crucial key points instantly using multiple selectable mathematical/NLP techniques.
+* **⌛ Interactive Stage Timeline Tracker**: Translates raw case logs into a highly aesthetic, color-coded chronological interactive horizontal timeline covering filing, hearings, trials, and final disposition stages.
+* **📊 GPU-Accelerated 3D Case Analytics**: Volumetric WebGL bar charts and pie charts tracking pending workloads, average disposition cycles, and legal category distributions.
 
-By performing classifications entirely in memory locally, AegisChat-3D achieves 60 FPS UI frame rates without needing expensive third-party REST API calls.
+### ⚙️ Working Procedure
+1. **Upload Briefs**: Navigate to the **OCR Extractor** or **NLP Summarizer** tab and drop a judicial PDF or scan.
+2. **Extract & Summarize**: Click *Extract Text* or *Generate Summary*. The local AI extracts relevant legal paragraphs and flags critical sections.
+3. **Parse Timeline**: The **Timeline Analyzer** uses sentence-boundary heuristics to map occurrences of dates and legal actions into a temporal sequence.
+4. **Interactive Audit**: Edit event logs, mark case status (Pending, Hearing, Disposed), and view 3D workload models on the visual dashboard.
 
 ---
 
-## 🚀 Quick Start & Installation
+## 💬 Engine 2: AegisChat-3D: Cyberbullying App WhatsApp (`whatsapp_app.py`)
 
-Getting the application up and running takes less than a minute.
+A simulated live digital workspace demonstrating active real-time moderation, automatic threat containment, and interactive audits.
 
-### 1. Prerequisites
-Ensure you have Python 3.8+ installed on your system.
+### 🌟 Core Capabilities
+* **📱 WhatsApp Web Glass-HUD**: A fully interactive glassmorphism WhatsApp Web layout with functional active contact sidebars, custom profile details, and fluid dark-mode transitions.
+* **🚨 10-Second Auto-Delete & Censor Countdown**: If a toxic or harmful message is typed (or injected via simulation), the system instantly triggers:
+  1. A browser popup alert warning the user: `"This is a cyber message"`.
+  2. A glowing neon alert banner displaying a countdown timer.
+  3. Dynamic **CSS blur filters** obscuring the bubble.
+  4. Automatic, permanent deletion and database sanitization when the 10-second timer hits zero.
+* **👤 Permanent Behavioral Profile Cards**: Toxicity rates (Sent Warnings, Received Warnings) are logged inside persistent profile stats. Even if the chat bubble is deleted, the statistical record remains to audit personal behavior.
+* **🛡️ Relational AI Shield Logs**: A secure moderation database ledger detailing the precise rule triggered (Threat, Insult, hate speech), classification probability, severity, and action taken.
 
-### 2. Install Dependencies
-Install the required standard libraries from `requirements.txt`:
-```bash
-pip install -r requirements.txt
-```
+### ⚙️ Working Procedure
+1. **Interactive Chat**: Select any contact (e.g., Aarav, Rohan, Priya) from the sidebar. Send a message or press **⚡ Inject Next Chat Stream** to tick the simulated conversation forward.
+2. **Automatic Aegis Trigger**: If a bullying word is sent, the message is instantly blurred using CSS blur-filters (`filter: blur(7px)`). An alert banner flashes indicating permanent deletion is scheduled.
+3. **10-Second Deletion Tick**: The thread automatically counts down from 10 seconds. After 10s, a browser alert pops up confirming absolute censorship, and the message is replaced with a clean `🚫 [Message deleted - flagged as cyberbullying]` card.
+4. **Stats Audit**: Click **👤 View Profile Stats** on the active chat header to view the user's permanent cumulative toxicity ledger and WebGL splines.
 
-### 3. Run the Automated Test Suite
-Verify that all database schemas, AI classifiers, profile stats, and countdown deletion pipelines are working perfectly:
-```bash
-python test_integration.py
-```
-*Expectation: Score: 23/23 Tests Passed (100% Green)*
+---
 
-### 4. Run the Streamlit Dashboard
-Launch the live, interactive **Cyberbullying App WhatsApp** dashboard locally:
-```bash
-python -m streamlit run app.py
-```
-Open `http://localhost:8501` in your browser.
+## 💻 Tech Stack & AI Classifiers
+
+LexHelix relies on local, high-speed, sub-millisecond libraries:
+* **UI Framework**: Streamlit (with custom injected Markdown/CSS layers).
+* **Database**: SQLite3 with dedicated relational tables for messages, contacts, and moderation alerts.
+* **3D WebGL Pipeline**: Embedded HTML-Three.js engines utilizing dynamic SVG rendering for absolute responsive container alignment.
+* **AI Toxicity Engine**: High-performance **Weighted Lexicon Matrix** coupled with **Regex Boundary Qualifiers** classifying toxic markers (Threat, Insult, Harassment, Hate Speech) completely in-memory.
 
 ---
 
@@ -99,29 +103,54 @@ Open `http://localhost:8501` in your browser.
 
 ```
 M:\103(B)\
-├── app.py                     # Main Obsidian WhatsApp UI and countdown loops
-├── database.py                # Relational SQLite database schema and CRUD layer
-├── test_integration.py        # ASCII-safe CI/CD automated validation suite
-├── requirements.txt           # Standard library requirements
-├── LICENSE                    # MIT open-source license
-├── README.md                  # Beautiful project documentation
-├── db/                        # Persistent SQLite database directory
-│   └── cyberbullying.db       # Seeded database containing contacts and messages
+├── app.py                      # Smart Judicial Case Analyzer Engine
+├── whatsapp_app.py              # AegisChat-3D WhatsApp Simulator Engine
+├── Cyberbullying app WhatsApp.py# Identical backup WhatsApp engine file
+├── database.py                 # Core relational SQLite database schema
+├── test_integration.py         # Full automated CI/CD validation script
+├── requirements.txt            # Python dependencies (Streamlit, Plotly, Pandas, etc.)
+├── LICENSE                     # MIT License
+├── README.md                   # Beautiful, detailed markdown platform manual
+├── db/                         # Persistent SQLite databases
+│   └── cyberbullying.db        # Seeded database containing contacts, timeline logs, & metrics
 └── modules/
-    ├── moderator_engine.py    # AI Toxicity Lexicon classification engine
-    ├── chat_simulator.py      # Preloaded safe and toxic streaming dialogues
-    └── three_visualizations.py# Three.js WebGL graphics frame channels
+    ├── moderator_engine.py     # Local Weighted Lexicon AI Toxicity engine
+    ├── chat_simulator.py       # Simulated conversation dialogue feeds
+    ├── case_flow.py            # Case stage parsers and timeline logic
+    ├── nlp_summarizer.py       # NLP summarizing algorithms
+    ├── ocr_extractor.py        # PDF/Image text extractor OCR wrappers
+    └── three_visualizations.py # GPU WebGL 3D Constellations & spline tracks
 ```
 
 ---
 
-## 📜 License
-Distributed under the **MIT License**.
+## 🚀 Quick Local Launch
+
+Get the complete LexHelix platform running locally in under a minute:
+
+1. **Install Dependencies**:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+2. **Run Automated Integrity Validation**:
+   Validate SQLite integrations, NLP classifiers, and deletion triggers:
+   ```bash
+   python test_integration.py
+   ```
+
+3. **Launch the Smart Judicial Analyzer (Port 8501)**:
+   ```bash
+   python -m streamlit run app.py
+   ```
+
+4. **Launch the AegisChat-3D WhatsApp Shield (Port 8502)**:
+   ```bash
+   python -m streamlit run whatsapp_app.py --server.port 8502
+   ```
 
 ---
 
 <div align="center">
-
-*Designed with ❤️ by quantitative frontend engineers and AI moderation architects.*
-
+Designed and developed for state-of-the-art interactive digital safety & smart legal operations. 🧬⚖️💬
 </div>
