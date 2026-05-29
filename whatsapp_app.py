@@ -27,6 +27,9 @@ st.set_page_config(
 # ══════════════════════════════════════════════════════════
 #  SESSION STATE INITIALIZER
 # ══════════════════════════════════════════════════════════
+if "db_reset_done" not in st.session_state:
+    db.reset_whatsapp_db()
+    st.session_state.db_reset_done = True
 if "active_contact" not in st.session_state:
     st.session_state.active_contact = 1  # Aarav Sharma by default
 if "sim_index" not in st.session_state:

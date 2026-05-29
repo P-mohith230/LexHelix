@@ -546,7 +546,6 @@ def delete_contact(contact_id):
     conn.commit()
     conn.close()
 
-
 def clear_database():
     """Resets database message history and metrics."""
     conn = get_whatsapp_connection()
@@ -557,7 +556,28 @@ def clear_database():
     conn.close()
 
 
-# ══════════════════════════════════════════════════════════
+def reset_whatsapp_db():
+    """Purges all alerts, messages, and toxicity scores, and restores the initial seed messages."""
+    conn = get_whatsapp_connection()
+    cursor = conn.cursor()
+    cursor.execute("DELETE FROM moderation_alerts")
+    cursor.execute("DELETE FROM messages")
+    cursor.execute("UPDATE contacts SET toxicity_score = 0.0, sent_bully_count = 0, received_bully_count = 0")
+    
+    # Re-seed the pristine initial messages
+    seed_messages = [
+        (1, 2, "Hey Priya, did you check the new project specs?", "Hey Priya, did you check the new project specs?", 0, 0.02, "Safe", 0),
+        (2, 1, "Yes Aarav! Designing the WebGL interface right now.", "Yes Aarav! Designing the WebGL interface right now.", 0, 0.01, "Safe", 0),
+        (3, 1, "Rohan here! Excited to join the workspace.", "Rohan here! Excited to join the workspace.", 0, 0.02, "Safe", 0),
+    ]
+    cursor.executemany("""
+        INSERT INTO messages (sender_id, receiver_id, message_text, original_text, is_toxic, toxicity_probability, classification_tag, is_deleted)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+    """, seed_messages)
+    conn.commit()
+    conn.close()
+
+
 #  AUTO-INITIALIZATION
 # ══════════════════════════════════════════════════════════
 
