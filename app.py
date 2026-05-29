@@ -61,10 +61,8 @@ def style_plotly_figure(fig):
 # ══════════════════════════════════════════════════════════
 #  GLOBAL STYLES
 # ══════════════════════════════════════════════════════════
-st.markdown("""
-<style>
+st.markdown("""<style>
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
-
 /* Global Font Assignments */
 html, body, [class*="css"] {
     font-family: 'Plus Jakarta Sans', sans-serif;
@@ -73,7 +71,6 @@ html, body, [class*="css"] {
 h1, h2, h3, h4, h5, h6, .section-header {
     font-family: 'Space Grotesk', sans-serif !important;
 }
-
 /* Background Cyber Grid with Neon Glow Spots */
 .stApp {
     background-color: #03050c !important;
@@ -85,14 +82,12 @@ h1, h2, h3, h4, h5, h6, .section-header {
         linear-gradient(90deg, rgba(255, 255, 255, 0.005) 1px, transparent 1px);
     background-size: 100% 100%, 100% 100%, 100% 100%, 30px 30px, 30px 30px;
 }
-
 /* Hide Sidebar & Header */
 [data-testid="stSidebar"] { display: none !important; }
 [data-testid="collapsedControl"] { display: none !important; }
 .stApp > header { display: none !important; }
 #MainMenu { visibility: hidden; }
 footer { visibility: hidden; }
-
 /* Premium Futuristic HUD Header */
 .main-header {
     background: linear-gradient(135deg, rgba(13, 17, 28, 0.75) 0%, rgba(6, 8, 20, 0.9) 100%);
@@ -116,7 +111,6 @@ footer { visibility: hidden; }
     text-shadow: 0 0 20px rgba(0,240,255,0.1);
 }
 .main-header p { color: #94a3b8; font-size: 0.88rem; margin: 0.4rem 0 0 0; letter-spacing: 0.5px; }
-
 /* Premium Glassmorphism Metric Cards */
 .metric-card {
     background: rgba(13, 17, 28, 0.55);
@@ -141,7 +135,6 @@ footer { visibility: hidden; }
 .metric-value { font-size: 2rem; font-weight: 700; color: #ffffff; margin: 0; line-height: 1.1; }
 .metric-label { font-size: 0.7rem; color: #64748b; text-transform: uppercase; letter-spacing: 1.5px; margin-top: 0.5rem; font-weight: 600; }
 .metric-icon { font-size: 1.4rem; margin-bottom: 0.3rem; filter: drop-shadow(0 0 5px rgba(0,240,255,0.4)); }
-
 /* Sleek Sections */
 .section-header {
     color: #f8fafc; font-size: 1.1rem; font-weight: 600;
@@ -152,7 +145,6 @@ footer { visibility: hidden; }
 .section-header::before {
     content: ''; display: inline-block; width: 4px; height: 12px; background: #FFD700; border-radius: 2px;
 }
-
 /* Glassmorphic Summary Box */
 .summary-box {
     background: rgba(13, 17, 28, 0.65); backdrop-filter: blur(8px);
@@ -161,7 +153,6 @@ footer { visibility: hidden; }
     color: #cbd5e1; line-height: 1.7; font-size: 0.9rem;
     box-shadow: 0 10px 30px rgba(0,0,0,0.3);
 }
-
 /* Key Point Tags */
 .key-point-tag {
     display: inline-block; background: rgba(0, 240, 255, 0.08); color: #00f0ff;
@@ -174,7 +165,6 @@ footer { visibility: hidden; }
     box-shadow: 0 0 10px rgba(0, 240, 255, 0.3);
     transform: scale(1.05);
 }
-
 /* Stage Indicators (Pill docking style) */
 .stage-indicator {
     display: inline-flex; align-items: center; justify-content: center;
@@ -190,7 +180,6 @@ footer { visibility: hidden; }
     transform: scale(1.05);
 }
 .stage-past { border-color: rgba(34, 197, 94, 0.3); color: #22c55e; }
-
 /* Custom Streamlit Tabs styling (Dock system) */
 .stTabs [data-baseweb="tab-list"] {
     gap: 4px; background: rgba(13, 17, 28, 0.65) !important;
@@ -212,7 +201,6 @@ footer { visibility: hidden; }
 }
 .stTabs [data-baseweb="tab-highlight"] { background-color: #00f0ff !important; height: 3px; border-radius: 3px; }
 .stTabs [data-baseweb="tab-border"] { display: none; }
-
 /* High-end Styled Inputs, Selectboxes & Textareas */
 [data-baseweb="select"], [data-baseweb="input"], textarea, input {
     background-color: rgba(6, 8, 20, 0.8) !important;
@@ -225,7 +213,6 @@ textarea:focus, input:focus, [data-baseweb="select"]:focus-within {
     border-color: #00f0ff !important;
     box-shadow: 0 0 10px rgba(0, 240, 255, 0.35) !important;
 }
-
 /* Glowing Streamlit Primary Buttons */
 .stButton button[kind="primary"] {
     background: linear-gradient(135deg, #00f0ff 0%, #00b4d8 50%, #ff007f 100%) !important;
@@ -238,7 +225,6 @@ textarea:focus, input:focus, [data-baseweb="select"]:focus-within {
     transform: translateY(-2px) !important;
     box-shadow: 0 10px 25px rgba(0,240,255,0.4), 0 0 15px rgba(255,0,127,0.3) !important;
 }
-
 /* Glassmorphic Dataframes */
 [data-testid="stDataFrame"] {
     background: rgba(13, 17, 28, 0.45) !important;
@@ -246,7 +232,6 @@ textarea:focus, input:focus, [data-baseweb="select"]:focus-within {
     border-radius: 12px !important;
     padding: 8px !important;
 }
-
 /* Futuristic Scanning Laser Loader */
 .scanner-container {
     position: relative; width: 100%; height: 180px;

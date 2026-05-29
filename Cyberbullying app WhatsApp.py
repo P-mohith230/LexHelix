@@ -43,9 +43,7 @@ if "show_profile_page" not in st.session_state:
 # ══════════════════════════════════════════════════════════
 #  GLOBAL HIGH-TECH STYLING (GLASSMORPHISM)
 # ══════════════════════════════════════════════════════════
-st.markdown("""
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-<style>
+st.markdown("""<style>
 /* Global resets & typography */
 html, body, [data-testid="stAppViewContainer"] {
     background-color: #03050c !important;
@@ -56,7 +54,6 @@ h1, h2, h3, h4, h5, h6, .section-header {
     font-family: 'Space Grotesk', sans-serif !important;
     font-weight: 700;
 }
-
 /* Background Cyber Grid with Neon Glow Spots */
 .stApp {
     background-color: #03050c !important;
@@ -68,7 +65,6 @@ h1, h2, h3, h4, h5, h6, .section-header {
         linear-gradient(90deg, rgba(255, 255, 255, 0.005) 1px, transparent 1px);
     background-size: 100% 100%, 100% 100%, 100% 100%, 30px 30px, 30px 30px;
 }
-
 /* Glassmorphism Card styling */
 .glass-panel {
     background: rgba(13, 20, 35, 0.45);
@@ -79,7 +75,6 @@ h1, h2, h3, h4, h5, h6, .section-header {
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
     margin-bottom: 1.2rem;
 }
-
 /* Cyber Alert Banner */
 .cyberbullying-banner {
     background: linear-gradient(135deg, rgba(255, 0, 127, 0.25) 0%, rgba(20, 5, 15, 0.8) 100%);
@@ -94,12 +89,10 @@ h1, h2, h3, h4, h5, h6, .section-header {
     margin-bottom: 1.2rem;
     animation: alertPulse 1.5s infinite alternate;
 }
-
 @keyframes alertPulse {
     0% { border-color: rgba(255, 0, 127, 0.5); }
     100% { border-color: rgba(255, 0, 127, 1); }
 }
-
 /* WhatsApp-Web Layout */
 .whatsapp-container {
     display: flex;
@@ -110,7 +103,6 @@ h1, h2, h3, h4, h5, h6, .section-header {
     background: rgba(8, 12, 22, 0.8);
     box-shadow: 0 20px 45px rgba(0, 0, 0, 0.6);
 }
-
 /* Chat Bubbles */
 .chat-window {
     flex-grow: 1;
@@ -118,7 +110,6 @@ h1, h2, h3, h4, h5, h6, .section-header {
     flex-direction: column;
     background: radial-gradient(circle at 50% 50%, #0d131f 0%, #05080f 100%);
 }
-
 .chat-bubble {
     max-width: 65%;
     padding: 0.75rem 1rem;
@@ -128,7 +119,6 @@ h1, h2, h3, h4, h5, h6, .section-header {
     position: relative;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.35);
 }
-
 .sender-bubble {
     align-self: flex-end;
     background: linear-gradient(135deg, rgba(0, 240, 255, 0.15) 0%, rgba(0, 180, 216, 0.08) 100%);
@@ -136,7 +126,6 @@ h1, h2, h3, h4, h5, h6, .section-header {
     color: #e2e8f0;
     border-bottom-right-radius: 2px;
 }
-
 .receiver-bubble {
     align-self: flex-start;
     background: rgba(16, 24, 43, 0.85);
@@ -144,7 +133,6 @@ h1, h2, h3, h4, h5, h6, .section-header {
     color: #e2e8f0;
     border-bottom-left-radius: 2px;
 }
-
 /* Bullying Blurring CSS Censors */
 .toxic-blurred {
     filter: blur(7px);
@@ -157,14 +145,12 @@ h1, h2, h3, h4, h5, h6, .section-header {
 .toxic-blurred:hover {
     filter: blur(0px);
 }
-
 .deleted-bubble {
     background: rgba(255, 255, 255, 0.03) !important;
     border: 1px dashed rgba(255, 255, 255, 0.15) !important;
     color: #64748b !important;
     font-style: italic;
 }
-
 /* Profiles stats grid */
 .profile-stats-card {
     background: rgba(13, 20, 35, 0.65);
@@ -174,7 +160,6 @@ h1, h2, h3, h4, h5, h6, .section-header {
     text-align: center;
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.45);
 }
-
 /* Custom Tabs Styling */
 .stTabs [data-baseweb="tab-list"] {
     background: rgba(10, 15, 28, 0.85) !important;
@@ -191,7 +176,6 @@ h1, h2, h3, h4, h5, h6, .section-header {
     color: #00f0ff !important;
     border-radius: 10px;
 }
-
 /* Glowing Streamlit Primary Buttons */
 .stButton button[kind="primary"] {
     background: linear-gradient(135deg, #00f0ff 0%, #00b4d8 50%, #ff007f 100%) !important;
@@ -205,6 +189,7 @@ h1, h2, h3, h4, h5, h6, .section-header {
     box-shadow: 0 10px 25px rgba(0,240,255,0.4), 0 0 15px rgba(255,0,127,0.3) !important;
 }
 </style>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 """, unsafe_allow_html=True)
 
 # ══════════════════════════════════════════════════════════
